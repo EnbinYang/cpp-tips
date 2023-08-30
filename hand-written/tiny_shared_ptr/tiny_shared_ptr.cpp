@@ -9,13 +9,13 @@ public:
     Test() {
         std::cout << "Test()" << std::endl;
     }
-
+    
     ~Test() {
         std::cout << "~Test()" << std::endl;
     }
 
-    void operation() {
-        std::cout << "operation()" << std::endl;
+    void test_opreation() {
+        std::cout << "test_opreation()" << std::endl;
     }
 };
 
@@ -25,8 +25,8 @@ int main() {
 
     std::cout << "ptr count = " << ptr.use_count() << std::endl;
     std::cout << "ptr_copy count = " << ptr_copy.use_count() << std::endl;
-    
-    ptr->operation();
+
+    ptr->test_opreation();
 
     tiny_shared_ptr<Test> ptr_empty;
     std::cout << "ptr_empty count = " << ptr_empty.use_count() << std::endl;

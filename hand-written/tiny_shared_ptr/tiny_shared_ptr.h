@@ -14,40 +14,40 @@ public:
 	}
 
 	tiny_shared_ptr<T>& operator=(const tiny_shared_ptr<T>& other) {
-		if (this != &other) {
-            release_source();
+		if (this != other) {
+			release_source();
 			_ptr = other._ptr;
 			_count = other._count;
 			if (_ptr) {
-                (*_count)++;
-            }
+				(*_count)++;
+			}
 		}
 
 		return *this;
 	}
 
-	T* operator->() const {
+	T* operator->() {
 		return _ptr;
 	}
 
-    int use_count() const {
+	int use_count() const {
 		return (_count ? *_count : 0);
 	}
 
 	~tiny_shared_ptr() {
-        release_source();
+		release_source();
 	}
 
 private:
-    void release_source() {
-        if (_count) {
-            (*_count)--;
-            if (*_count == 0) {
-                delete _ptr;
-                delete _count;
-            }
-        }
-    }
+	void release_source() {
+		if (_count) {
+			(*_count)--;
+			if (*_count == 0) {
+				delete _ptr;
+				delete _count;
+			}
+		}
+	}
 
 	T* _ptr;
 	size_t* _count;
